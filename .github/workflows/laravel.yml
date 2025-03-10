@@ -24,6 +24,11 @@ jobs:
         touch database/database.sqlite
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Set Environment Variables
+      run: |
+        echo "APP_ENV=testing" >> .env
+        echo "DB_CONNECTION=sqlite" >> .env
+        echo "DB_DATABASE=database/database.sqlite" >> .env
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
